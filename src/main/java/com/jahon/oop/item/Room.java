@@ -1,4 +1,4 @@
-package com.jahon.oop;
+package com.jahon.oop.item;
 
 import java.util.Collection;
 

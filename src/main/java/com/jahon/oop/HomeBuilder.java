@@ -2,6 +2,10 @@ package com.jahon.oop;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jahon.oop.item.Door;
+import com.jahon.oop.item.Light;
+import com.jahon.oop.item.Room;
+import com.jahon.oop.item.SmartHome;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
