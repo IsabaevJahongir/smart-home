@@ -16,4 +16,12 @@ public class Door {
     public void setOpen(boolean open) {
         isOpen = open;
     }
+
+    @Override
+    public String toString() {
+        return "Door{" +
+                "id='" + id + '\'' +
+                ", isOpen=" + isOpen +
+                "}\n";
+    }
 }

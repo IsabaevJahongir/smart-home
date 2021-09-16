@@ -21,4 +21,11 @@ public class SmartHome {
     public Collection<Room> getRooms() {
         return rooms;
     }
+
+    @Override
+    public String toString() {
+        return "SmartHome{" +
+                "rooms=" + rooms +
+                '}';
+    }
 }

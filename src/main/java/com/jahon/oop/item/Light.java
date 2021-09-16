@@ -20,4 +20,12 @@ public class Light {
     public void setOn(boolean on) {
         isOn = on;
     }
+
+    @Override
+    public String toString() {
+        return "Light{" +
+                "isOn=" + isOn +
+                ", id='" + id + '\'' +
+                "}\n";
+    }
 }

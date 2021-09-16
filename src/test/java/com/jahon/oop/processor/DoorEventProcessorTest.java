@@ -10,8 +10,9 @@ public class DoorEventProcessorTest {
 
     @Test
     public void processDoorTest() throws IOException {
-       SmartHome smartHome =  SmartHomeProvider.getSmartHome();
+        SmartHome smartHome = SmartHomeProvider.getSmartHome();
 
+        System.out.println(smartHome.getRooms());
 
     }
 
