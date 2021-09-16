@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String... args) throws IOException {
 
-        SmartHome smartHome = SmartHomeStateProvider.getSmartHomeState();
+        SmartHome smartHome = SmartHomeProvider.getSmartHome();
         EventManager eventManager = EventManagerFactory.createEventManager();
 
         // начинаем цикл обработки событий
