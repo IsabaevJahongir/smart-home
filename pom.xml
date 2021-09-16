@@ -5,7 +5,7 @@
 
     <groupId>com.jahon.oop</groupId>
     <artifactId>smart-home</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Maven Quick Start Archetype</name>
