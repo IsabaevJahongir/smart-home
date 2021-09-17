@@ -1,6 +1,9 @@
 package com.jahon.oop.item;
 
-public class Door {
+import com.jahon.oop.SensorEvent;
+import com.jahon.oop.SensorEventType;
+
+public class Door implements ItemEventExecutor {
     private final String id;
     private boolean isOpen;
 
@@ -9,10 +12,22 @@ public class Door {
         this.id = id;
     }
 
+    @Override
+    public void execute(SensorEvent event) {
+        if (id.equals(event.getObjectId())) {
+            if (event.getType() == SensorEventType.DOOR_OPEN) {
+                setOpen(true);
+                System.out.println("Door " + getId() + " was opened.");
+            } else {
+                setOpen(false);
+                System.out.println("Door " + getId() + " was closed.");
+            }
+        }
+    }
+
     public String getId() {
         return id;
     }
-
 
     public boolean isOpen() {
         return isOpen;
@@ -29,4 +44,5 @@ public class Door {
                 ", isOpen=" + isOpen +
                 "}\n";
     }
+
 }

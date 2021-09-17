@@ -1,8 +1,13 @@
 package com.jahon.oop.item;
 
+import com.jahon.oop.SensorEvent;
+import com.jahon.oop.SensorEventType;
+
 import java.util.Collection;
 
-public class Room {
+import static com.jahon.oop.SensorEventType.*;
+
+public class Room implements ItemEventExecutor {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
@@ -11,6 +16,21 @@ public class Room {
         this.lights = lights;
         this.doors = doors;
         this.name = name;
+    }
+
+    @Override
+    public void execute(SensorEvent sensorEvent) {
+        SensorEventType eventType = sensorEvent.getType();
+
+        if (eventType == DOOR_OPEN || eventType == DOOR_CLOSED) {
+            for (Door door : doors) {
+                door.execute(sensorEvent);
+            }
+        } else if (eventType == LIGHT_ON || eventType == LIGHT_OFF) {
+            for (Light light : lights) {
+                light.execute(sensorEvent);
+            }
+        }
     }
 
     public Collection<Light> getLights() {

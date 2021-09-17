@@ -1,9 +1,13 @@
 package com.jahon.oop.item;
 
+import com.jahon.oop.SensorEvent;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+
+public class SmartHome implements ItemEventExecutor {
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -12,6 +16,14 @@ public class SmartHome {
 
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    @Override
+    public void execute(SensorEvent sensorEvent) {
+        for (Room room : rooms) {
+            room.execute(sensorEvent);
+        }
+
     }
 
     public void addRoom(Room room) {

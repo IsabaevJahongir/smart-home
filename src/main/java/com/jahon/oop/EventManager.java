@@ -1,6 +1,5 @@
 package com.jahon.oop;
 
-import com.jahon.oop.item.ItemType;
 import com.jahon.oop.item.SmartHome;
 import com.jahon.oop.processor.EventProcessor;
 

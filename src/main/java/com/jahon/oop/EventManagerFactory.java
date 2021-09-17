@@ -2,7 +2,7 @@ package com.jahon.oop;
 
 import com.jahon.oop.processor.*;
 
-import static com.jahon.oop.item.ItemType.*;
+import static com.jahon.oop.ItemType.*;
 
 public class EventManagerFactory {
 
