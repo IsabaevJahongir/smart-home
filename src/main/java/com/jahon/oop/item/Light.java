@@ -1,6 +1,6 @@
 package com.jahon.oop.item;
 
-import com.jahon.oop.CommandSender;
+import com.jahon.oop.SensorCommandSender;
 import com.jahon.oop.SensorCommand;
 
 import static com.jahon.oop.SensorEventType.LIGHT_OFF;
@@ -32,10 +32,10 @@ public class Light implements Actionable {
         isOn = on;
         if (on) {
             System.out.println("Light " + id + " was turned on.");
-            CommandSender.sendCommand(new SensorCommand(LIGHT_ON, id));
+            SensorCommandSender.sendCommand(new SensorCommand(LIGHT_ON, id));
         } else {
             System.out.println("Light " + id + " was turned off.");
-            CommandSender.sendCommand(new SensorCommand(LIGHT_OFF, id));
+            SensorCommandSender.sendCommand(new SensorCommand(LIGHT_OFF, id));
         }
     }
 

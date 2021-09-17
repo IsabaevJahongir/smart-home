@@ -9,10 +9,10 @@ public class App {
     public static void main(String... args) throws IOException {
 
         SmartHome smartHome = SmartHomeProvider.getSmartHome();
-        EventManager eventHandler = new EventManager();
+        EventObserver eventHandler = new EventObserver();
 
         // начинаем цикл обработки событий
-        new EventHandler(smartHome, eventHandler).run();
+        new EventManager(smartHome, eventHandler).run();
 
     }
 

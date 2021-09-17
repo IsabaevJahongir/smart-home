@@ -1,6 +1,6 @@
 package com.jahon.oop.item;
 
-import com.jahon.oop.CommandSender;
+import com.jahon.oop.SensorCommandSender;
 import com.jahon.oop.SensorCommand;
 
 import static com.jahon.oop.SensorEventType.DOOR_CLOSED;
@@ -32,10 +32,10 @@ public class Door implements Actionable {
         this.isOpen = isOpen;
         if(isOpen){
             System.out.println("Door " + id + " was opened.");
-            CommandSender.sendCommand(new SensorCommand(DOOR_OPEN, id));
+            SensorCommandSender.sendCommand(new SensorCommand(DOOR_OPEN, id));
         }else {
             System.out.println("Door " + id + " was closed.");
-            CommandSender.sendCommand(new SensorCommand(DOOR_CLOSED, id));
+            SensorCommandSender.sendCommand(new SensorCommand(DOOR_CLOSED, id));
         }
 
     }
