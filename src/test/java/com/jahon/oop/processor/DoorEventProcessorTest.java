@@ -11,6 +11,7 @@ import com.jahon.oop.item.SmartHome;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.jahon.oop.util.ItemFinder.findDoorById;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -29,7 +30,7 @@ public class DoorEventProcessorTest {
     @Test
     public void processDoorOpenTest() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_OPEN, "1");
-        Door door = findDoorById(event.getObjectId());
+        Door door = findDoorById(smartHome, event.getObjectId());
         new DoorEventProcessor().process(smartHome, event);
 
         assertTrue(door.isOpen());
@@ -38,25 +39,12 @@ public class DoorEventProcessorTest {
     @Test
     public void processDoorClosedTest() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
-        Door door = findDoorById(event.getObjectId());
+        Door door = findDoorById(smartHome,event.getObjectId());
         new DoorEventProcessor().process(smartHome, event);
 
         assertFalse(door.isOpen());
     }
 
-    private Door findDoorById(String id) {
 
-        Door foundDoor = null;
-
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals(id)) {
-                    return door;
-                }
-            }
-        }
-
-        return foundDoor;
-    }
 
 }

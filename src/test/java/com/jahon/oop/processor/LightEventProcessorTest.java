@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static com.jahon.oop.util.ItemFinder.findLightById;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -29,7 +30,7 @@ public class LightEventProcessorTest {
     public void processLightOnTest() {
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_ON, "4");
 
-        Light light = findLightById(event.getObjectId());
+        Light light = findLightById(smartHome, event.getObjectId());
         new LightEventProcessor().process(smartHome, event);
 
         assertTrue(light.isOn());
@@ -40,26 +41,10 @@ public class LightEventProcessorTest {
     public void processLightOfTest() {
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_OFF, "1");
 
-        Light light = findLightById(event.getObjectId());
+        Light light = findLightById(smartHome, event.getObjectId());
         new LightEventProcessor().process(smartHome, event);
 
         assertFalse(light.isOn());
-    }
-
-
-    private Light findLightById(String id) {
-
-        Light foundLight = null;
-
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                if (light.getId().equals(id)) {
-                    return light;
-                }
-            }
-        }
-
-        return foundLight;
     }
 
 
