@@ -11,7 +11,13 @@ import java.util.EnumMap;
 import static com.jahon.oop.ItemType.*;
 
 
-public class EventObserver {
+public class SmartHomeEventObserver {
+
+    private SmartHome smartHome;
+
+    public SmartHomeEventObserver(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
 
     private final EnumMap<ItemType, EventProcessor> eventProcessors = new EnumMap<>(ItemType.class);
 
@@ -21,11 +27,24 @@ public class EventObserver {
         subscribeEventProcessor(LIGHT, new LightEventProcessor());
     }
 
-    public void processEvent(SmartHome smartHome, SensorEvent event) {
+    public void processEvent(SensorEvent event) {
         for (EventProcessor eventProcessor : eventProcessors.values()) {
             eventProcessor.process(smartHome, event);
         }
     }
+
+    public void run() {
+        SensorEvent event = RandomEventProvider.getNextSensorEvent();
+
+        while (event != null) {
+            System.out.println("Got event: " + event);
+
+            processEvent(event);
+
+            event = RandomEventProvider.getNextSensorEvent();
+        }
+    }
+
 
     private void subscribeEventProcessor(ItemType itemType, EventProcessor eventProcessor) {
         eventProcessors.put(itemType, eventProcessor);
