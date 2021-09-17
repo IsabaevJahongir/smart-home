@@ -1,5 +1,7 @@
 package com.jahon.oop;
 
+import com.jahon.oop.eventprovider.EventProvider;
+import com.jahon.oop.eventprovider.RandomEventProvider;
 import com.jahon.oop.item.SmartHome;
 import com.jahon.oop.processor.DoorEventProcessor;
 import com.jahon.oop.processor.EventProcessor;
@@ -13,12 +15,6 @@ import static com.jahon.oop.ItemType.*;
 
 public class SmartHomeEventObserver {
 
-    private SmartHome smartHome;
-
-    public SmartHomeEventObserver(SmartHome smartHome) {
-        this.smartHome = smartHome;
-    }
-
     private final EnumMap<ItemType, EventProcessor> eventProcessors = new EnumMap<>(ItemType.class);
 
     {
@@ -27,24 +23,33 @@ public class SmartHomeEventObserver {
         subscribeEventProcessor(LIGHT, new LightEventProcessor());
     }
 
-    public void processEvent(SensorEvent event) {
-        for (EventProcessor eventProcessor : eventProcessors.values()) {
-            eventProcessor.process(smartHome, event);
-        }
+    private SmartHome smartHome;
+    private EventProvider eventProvider;
+
+    public SmartHomeEventObserver(SmartHome smartHome, EventProvider eventProvider) {
+        this.smartHome = smartHome;
+        this.eventProvider = eventProvider;
     }
 
+
     public void run() {
-        SensorEvent event = RandomEventProvider.getNextSensorEvent();
+        SensorEvent event = eventProvider.getNextSensorEvent();
 
         while (event != null) {
             System.out.println("Got event: " + event);
 
             processEvent(event);
 
-            event = RandomEventProvider.getNextSensorEvent();
+            event = eventProvider.getNextSensorEvent();
         }
     }
 
+
+    private void processEvent(SensorEvent event) {
+        for (EventProcessor eventProcessor : eventProcessors.values()) {
+            eventProcessor.process(smartHome, event);
+        }
+    }
 
     private void subscribeEventProcessor(ItemType itemType, EventProcessor eventProcessor) {
         eventProcessors.put(itemType, eventProcessor);

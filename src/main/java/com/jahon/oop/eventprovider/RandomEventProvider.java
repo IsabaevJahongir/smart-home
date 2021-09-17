@@ -1,8 +1,11 @@
-package com.jahon.oop;
+package com.jahon.oop.eventprovider;
 
-public class RandomEventProvider {
+import com.jahon.oop.SensorEvent;
+import com.jahon.oop.SensorEventType;
 
-    public static SensorEvent getNextSensorEvent() {
+public class RandomEventProvider implements EventProvider {
+
+    public SensorEvent getNextSensorEvent() {
         // pretend like we're getting the events from physical world, but here we're going to just generate some random events
         if (Math.random() < 0.05) return null; // null means end of event stream
         SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
