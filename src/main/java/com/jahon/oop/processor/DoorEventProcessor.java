@@ -9,19 +9,15 @@ import static com.jahon.oop.SensorEventType.DOOR_OPEN;
 
 public class DoorEventProcessor implements EventProcessor {
 
+    // событие от двери
     public void process(SmartHome smartHome, SensorEvent event) {
-        if(isDoorEvent(event.getType())) {
+        SensorEventType eventType = event.getType();
+        if (isDoorEvent(eventType)) {
             smartHome.executeAction((obj) -> {
                 if (obj instanceof Door) {
                     Door door = (Door) obj;
                     if (door.getId().equals(event.getObjectId())) {
-                        if (event.getType() == SensorEventType.DOOR_OPEN) {
-                            door.setOpen(true);
-                            System.out.println("Door " + door.getId() + " was opened.");
-                        } else {
-                            door.setOpen(false);
-                            System.out.println("Door " + door.getId() + " was closed.");
-                        }
+                        door.setOpen(isDoorOpen(eventType));
                     }
                 }
             });
@@ -30,5 +26,9 @@ public class DoorEventProcessor implements EventProcessor {
 
     private boolean isDoorEvent(SensorEventType eventType) {
         return eventType == DOOR_OPEN || eventType == DOOR_CLOSED;
+    }
+
+    private boolean isDoorOpen(SensorEventType eventType) {
+        return eventType == SensorEventType.DOOR_OPEN;
     }
 }

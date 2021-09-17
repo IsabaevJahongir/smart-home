@@ -1,7 +1,5 @@
 package com.jahon.oop.item;
 
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 
