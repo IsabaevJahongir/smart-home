@@ -1,9 +1,7 @@
 package com.jahon.oop.item;
 
-import com.jahon.oop.SensorEvent;
-import com.jahon.oop.SensorEventType;
 
-public class Door implements ItemEventExecutor {
+public class Door implements Actionable {
     private final String id;
     private boolean isOpen;
 
@@ -13,16 +11,8 @@ public class Door implements ItemEventExecutor {
     }
 
     @Override
-    public void execute(SensorEvent event) {
-        if (id.equals(event.getObjectId())) {
-            if (event.getType() == SensorEventType.DOOR_OPEN) {
-                setOpen(true);
-                System.out.println("Door " + getId() + " was opened.");
-            } else {
-                setOpen(false);
-                System.out.println("Door " + getId() + " was closed.");
-            }
-        }
+    public void executeAction(Action action) {
+        action.execute(this);
     }
 
     public String getId() {
