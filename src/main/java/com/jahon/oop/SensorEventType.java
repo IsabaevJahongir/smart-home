@@ -1,7 +1,7 @@
 package com.jahon.oop;
 
 public enum SensorEventType {
-    LIGHT_ON, LIGHT_OFF, DOOR_OPEN, DOOR_CLOSED, ALARM_ACTIVATE("111"), ALARM_DEACTIVATE("222"), ALARM_ALERT_OFF("333");
+    LIGHT_ON, LIGHT_OFF, DOOR_OPEN, DOOR_CLOSED, ALARM_ACTIVATE("qwerty"), ALARM_DEACTIVATE("qwerty");
 
     SensorEventType() {
     }

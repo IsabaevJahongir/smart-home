@@ -3,10 +3,7 @@ package com.jahon.oop;
 import com.jahon.oop.eventprovider.EventProvider;
 import com.jahon.oop.eventprovider.RandomEventProvider;
 import com.jahon.oop.item.SmartHome;
-import com.jahon.oop.processor.DoorEventProcessor;
-import com.jahon.oop.processor.EventProcessor;
-import com.jahon.oop.processor.HallDoorEventProcessor;
-import com.jahon.oop.processor.LightEventProcessor;
+import com.jahon.oop.processor.*;
 
 import java.util.EnumMap;
 
@@ -16,11 +13,11 @@ import static com.jahon.oop.ItemType.*;
 public class SmartHomeEventObserver {
 
     private final EnumMap<ItemType, EventProcessor> eventProcessors = new EnumMap<>(ItemType.class);
-
     {
         subscribeEventProcessor(DOOR, new DoorEventProcessor());
         subscribeEventProcessor(HALL_DOOR, new HallDoorEventProcessor());
         subscribeEventProcessor(LIGHT, new LightEventProcessor());
+        subscribeEventProcessor(ALARM, new AlarmEventProcessor());
     }
 
     private SmartHome smartHome;

@@ -20,4 +20,5 @@ public enum AlarmStateType {
         return alarmState;
     }
 
+
 }

@@ -9,7 +9,6 @@ import java.io.IOException;
 public class App {
 
     public static void main(String... args) throws IOException {
-
         SmartHome smartHome = SmartHomeProvider.getSmartHome();
         EventProvider eventProvider = new RandomEventProvider();
         SmartHomeEventObserver eventObserver = new SmartHomeEventObserver(smartHome, eventProvider);
