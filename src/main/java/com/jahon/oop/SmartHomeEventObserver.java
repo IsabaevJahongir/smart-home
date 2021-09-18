@@ -28,7 +28,6 @@ public class SmartHomeEventObserver {
         this.eventProvider = eventProvider;
     }
 
-
     public void run() {
         SensorEvent event = eventProvider.getNextSensorEvent();
 

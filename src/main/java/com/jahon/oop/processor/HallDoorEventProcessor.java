@@ -5,6 +5,9 @@ import com.jahon.oop.item.Door;
 import com.jahon.oop.item.Light;
 import com.jahon.oop.item.Room;
 import com.jahon.oop.item.SmartHome;
+import com.jahon.oop.item.alarm.Alarm;
+import com.jahon.oop.item.alarm.AlarmActivatedState;
+import com.jahon.oop.item.alarm.AlarmDeactivatedState;
 
 import static com.jahon.oop.SensorEventType.DOOR_CLOSED;
 
@@ -16,20 +19,25 @@ public class HallDoorEventProcessor implements EventProcessor {
     // в этом случае мы хотим автоматически выключить свет во всем доме (это же умный дом!)
     public void process(SmartHome smartHome, SensorEvent event) {
         if (isDoorCloseEvent(event.getType())) {
-            smartHome.executeAction(obj -> {
-                if (obj instanceof Room) {
-                    Room hallRoom = (Room) obj;
-                    if (hallRoom.getName().equals(hallRoomName)) {
-                        for (Door door : hallRoom.getDoors()) {
-                            if (door.getId().equals(event.getObjectId())) {
-                                door.setOpen(false);
-                                turnOffAllLights(smartHome);
-                                return;
+            Alarm alarm = smartHome.getAlarm();
+            if (alarm.getAlarmState() instanceof AlarmDeactivatedState) {
+                smartHome.executeAction(obj -> {
+                    if (obj instanceof Room) {
+                        Room hallRoom = (Room) obj;
+                        if (hallRoom.getName().equals(hallRoomName)) {
+                            for (Door door : hallRoom.getDoors()) {
+                                if (door.getId().equals(event.getObjectId())) {
+                                    door.setOpen(false);
+                                    turnOffAllLights(smartHome);
+                                    return;
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                alarm.getAlarmState().alert(alarm, "");
+            }
         }
     }
 
