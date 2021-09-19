@@ -4,6 +4,8 @@ import com.jahon.oop.eventprovider.EventProvider;
 import com.jahon.oop.eventprovider.RandomEventProvider;
 import com.jahon.oop.item.SmartHome;
 import com.jahon.oop.processor.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.EnumMap;
 
@@ -11,8 +13,10 @@ import static com.jahon.oop.ItemType.*;
 
 
 public class SmartHomeEventObserver {
+    private static final Logger log = LoggerFactory.getLogger(SmartHomeEventObserver.class);
 
     private final EnumMap<ItemType, EventProcessor> eventProcessors = new EnumMap<>(ItemType.class);
+
     {
         subscribeEventProcessor(DOOR, new DoorEventProcessor());
         subscribeEventProcessor(HALL_DOOR, new HallDoorEventProcessor());
@@ -32,7 +36,7 @@ public class SmartHomeEventObserver {
         SensorEvent event = eventProvider.getNextSensorEvent();
 
         while (event != null) {
-            System.out.println("Got event: " + event);
+            log.info("Got event: " + event);
 
             processEvent(event);
 

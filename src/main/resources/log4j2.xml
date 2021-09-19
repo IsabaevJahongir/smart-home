@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="local" monitorInterval="60">
+
+    <Properties>
+        <Property name="logdir">./logs</Property>
+    </Properties>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="smarthome"/>
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+
+        <Logger name="com.jahon.oop" level="info" additivity="true">
+            <AppenderRef ref="smarthome"/>
+        </Logger>
+    </Loggers>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT" follow="true">
+            <PatternLayout
+                    pattern="%style{%d{ISO8601}}{bright, green} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{*.}}{bright,yellow}: %msg%n%throwable"/>
+        </Console>
+
+        <RollingFile name="smarthome" fileName="${logdir}/smarthome.log"
+                     filePattern="${logdir}/smarthome-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p - [%l] [%T:(%t)] === %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="7">
+                <Delete basePath="${logdir}" maxDepth="1">
+                    <IfFileName glob="smarthome-*.log.gz"/>
+                    <IfLastModified age="1d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+</Configuration>

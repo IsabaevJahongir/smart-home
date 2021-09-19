@@ -2,11 +2,15 @@ package com.jahon.oop.item;
 
 import com.jahon.oop.SensorCommandSender;
 import com.jahon.oop.SensorCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.jahon.oop.SensorEventType.LIGHT_OFF;
 import static com.jahon.oop.SensorEventType.LIGHT_ON;
 
 public class Light implements Actionable {
+    private static final Logger log = LoggerFactory.getLogger(Light.class);
+
     private boolean isOn;
     private final String id;
 
@@ -31,10 +35,10 @@ public class Light implements Actionable {
     public void setOn(boolean on) {
         isOn = on;
         if (on) {
-            System.out.println("Light " + id + " was turned on.");
+            log.info("Light " + id + " was turned on.");
             SensorCommandSender.sendCommand(new SensorCommand(LIGHT_ON, id));
         } else {
-            System.out.println("Light " + id + " was turned off.");
+            log.info("Light " + id + " was turned off.");
             SensorCommandSender.sendCommand(new SensorCommand(LIGHT_OFF, id));
         }
     }
