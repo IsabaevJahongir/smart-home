@@ -11,14 +11,21 @@ import java.io.IOException;
 public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) {
         log.info("Start Smarthome");
-        SmartHome smartHome = SmartHomeProvider.getSmartHome();
-        EventProvider eventProvider = new RandomEventProvider();
-        SmartHomeEventObserver eventObserver = new SmartHomeEventObserver(smartHome, eventProvider);
 
-        // начинаем цикл обработки событий
-        eventObserver.run();
+        try {
+            SmartHome smartHome = SmartHomeProvider.getSmartHome();
+            EventProvider eventProvider = new RandomEventProvider();
+            SmartHomeEventObserver eventObserver = new SmartHomeEventObserver(smartHome, eventProvider);
+
+            // начинаем цикл обработки событий
+            eventObserver.run();
+        } catch (IOException ex) {
+            log.error("Problem with the smarthome init file");
+        }
+
+
         log.info("End Smarthome");
     }
 

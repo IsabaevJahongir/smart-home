@@ -11,7 +11,7 @@
             <AppenderRef ref="CONSOLE"/>
         </Root>
 
-        <Logger name="com.jahon.oop" level="info" additivity="true">
+        <Logger name="com.jahon.oop" level="debug" additivity="true">
             <AppenderRef ref="smarthome"/>
         </Logger>
     </Loggers>

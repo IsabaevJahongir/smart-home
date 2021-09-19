@@ -36,7 +36,7 @@ public class SmartHomeEventObserver {
         SensorEvent event = eventProvider.getNextSensorEvent();
 
         while (event != null) {
-            log.info("Got event: " + event);
+            log.debug("Got event: " + event);
 
             processEvent(event);
 

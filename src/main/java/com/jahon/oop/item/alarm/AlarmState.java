@@ -13,7 +13,7 @@ public interface AlarmState {
     void deactivate(Alarm alarm, String password);
 
     default void alert(Alarm alarm, String password) {
-        log.error("Alert! Alert! Alert!");
+        log.info("Alert! Alert! Alert!");
         alarm.changeState(ALERT.getState());
     }
 }
