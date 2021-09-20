@@ -22,7 +22,7 @@ public class App {
             // начинаем цикл обработки событий
             eventObserver.run();
         } catch (IOException ex) {
-            log.error("Problem with the smarthome init file");
+            log.error("Problem with the smarthome init file: ", ex);
         }
 
 
