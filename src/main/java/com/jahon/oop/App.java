@@ -3,6 +3,7 @@ package com.jahon.oop;
 import com.jahon.oop.eventprovider.EventProvider;
 import com.jahon.oop.eventprovider.RandomEventProvider;
 import com.jahon.oop.item.SmartHome;
+import com.jahon.oop.remote.MyRemoteControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ public class App {
 
         try {
             SmartHome smartHome = SmartHomeProvider.getSmartHome();
+            RemoteControlRegistry.registerRemoteControl(new MyRemoteControl(smartHome), "1");
             EventProvider eventProvider = new RandomEventProvider();
             SmartHomeEventObserver eventObserver = new SmartHomeEventObserver(smartHome, eventProvider);
 
