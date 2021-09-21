@@ -78,15 +78,29 @@ public class RemoteControlExecutorTest {
     }
 
     /**
-     * Команда "1" закрывает
+     * Команда "1" закрывает дверь в коридоре
      */
     @Test
     public void executeCommand1Test() {
-        // rcExecutor.executCommand("1", "1");
         Door hallDoor = ItemFinder.findDoorById(smartHome, "4");
         hallDoor.setOpen(true);
-        System.out.println(hallDoor);
+        rcExecutor.executCommand("1", "1");
+
+        assertFalse(hallDoor.isOpen());
     }
 
+    /**
+     * Команда "1" закрывает дверь в коридоре
+     */
+    @Test
+    public void executeCommand2Test() {
+        rcExecutor.executCommand("2", "1");
+
+        Room hall = ItemFinder.findRoomByName(smartHome, "hall");
+
+        for(Light light: hall.getLights()){
+            assertTrue(light.isOn());
+        }
+    }
 
 }

@@ -22,8 +22,8 @@ public class HallLightsOnCommand implements Command {
                 Room room = (Room) obj;
                 if (room.getName().equals(HALL)) {
                     for (Light light : room.getLights()) {
-                        if (light.isOn()) {
-                            light.setOn(false);
+                        if (!light.isOn()) {
+                            light.setOn(true);
                         }
                     }
                 }

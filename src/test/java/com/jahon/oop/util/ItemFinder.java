@@ -38,5 +38,13 @@ public class ItemFinder {
         return foundLight;
     }
 
+    public static Room findRoomByName(SmartHome smartHome, String name) {
+        for (Room room : smartHome.getRooms()) {
+            if (room.getName().equals(name)) {
+                return room;
+            }
+        }
+        return null;
+    }
 
 }
