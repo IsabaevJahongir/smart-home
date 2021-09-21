@@ -6,7 +6,6 @@ import com.jahon.oop.item.Light;
 import com.jahon.oop.item.Room;
 import com.jahon.oop.item.SmartHome;
 import com.jahon.oop.item.alarm.Alarm;
-import com.jahon.oop.item.alarm.AlarmActivatedState;
 import com.jahon.oop.item.alarm.AlarmDeactivatedState;
 
 import static com.jahon.oop.SensorEventType.DOOR_CLOSED;

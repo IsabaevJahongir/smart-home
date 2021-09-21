@@ -1,7 +1,6 @@
 package com.jahon.oop;
 
 import com.jahon.oop.eventprovider.EventProvider;
-import com.jahon.oop.eventprovider.RandomEventProvider;
 import com.jahon.oop.item.SmartHome;
 import com.jahon.oop.processor.*;
 import org.slf4j.Logger;

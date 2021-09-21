@@ -15,8 +15,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static com.jahon.oop.AlarmStateType.DEACTIVATE;
-
 public class SmartHomeBuilder {
 
     public static void main(String[] args) throws IOException {
