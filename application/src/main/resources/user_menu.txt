@@ -1,0 +1,4 @@
+1. Show home
+2. Send command
+3. Refresh token
+4. Main menu

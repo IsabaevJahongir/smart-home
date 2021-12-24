@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="local" monitorInterval="60">
+
+    <Properties>
+        <Property name="logdir">./home/logs</Property>
+    </Properties>
+
+    <Loggers>
+
+        <Root level="info">
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+
+        <Logger name="com.jahon.home" level="debug" additivity="true">
+            <AppenderRef ref="home"/>
+        </Logger>
+
+    </Loggers>
+
+    <Appenders>
+
+        <Console name="CONSOLE" target="SYSTEM_OUT" follow="true">
+            <PatternLayout
+                    pattern="%style{%d{ISO8601}}{bright, green} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{*.}}{bright,yellow}: %msg%n%throwable"/>
+        </Console>
+
+        <RollingFile name="server" fileName="${logdir}/home.log"
+                     filePattern="${logdir}/server-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p - [%l] [%T:(%t)] === %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="7">
+                <Delete basePath="${logdir}" maxDepth="1">
+                    <IfFileName glob="server-*.log.gz"/>
+                    <IfLastModified age="1d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+    </Appenders>
+
+</Configuration>

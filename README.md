@@ -1,14 +1,49 @@
-# smart-home
+# Умный дом:
 
-Project Smart Home implements 'smart home''.
-The house has sensors which are connected to a central server and send events in case of lights on/off doors open/close.
-The system receives events of type SensorEvent.
-<br/>
-SmartHome - the home itself, contains rooms<br/>
-Room - room, contains doors and lights<br/>
-Door - door (interroom or entrance),<br/>
-Light - source of light (lighbulb and etc)<br/>
-SensorEvent - represents physical world event<br/>
-SenserEventType - type of event, now there are 4 types<br/>
-SensorCommand - command which allows to programmatically manage the physical world (turn on/off lights, open/close doorlocks)<br/>
-CommandType - type of command, now only 1 type (turn ligths off)<br/>
+В доме устанавливаются датчики (home-devices) на различные устройства (лампочки, двери, сигнализация и т.д.). Датчиками
+управляет сервер (server) по средствам rest-запросов. Используя приложение (application) можно отправить на сервер
+запросы на те или иные события.
+
+## Структура дома:
+
++ SmartHome - дом, содержит комнаты
++ Room - комната, содержит двери и лампочки
++ Door - дверь (межкомнатная либо входная)
++ Light - источник света (лампочки и т.д.)
++ SensorEvent - представляет события реального мира
++ SenserEventType - типы событий
+
+## Авторизация запросов с помощью токена доступа:
+
+1. Пользователь проходит аутентификацию
+2. Сервер создает access и refresh токены, подписанные секретным ключом, а затем отправляет их клиенту
+3. Токены сохраняются на клиенте и токен доступа передается на сервер с каждым последующим запросом. Для передачи токена
+   используется HTTP заголовок Authorization. Токен доступа имеет ограниченное время жизни, и при истекании этого
+   времени необходимо передать серверу refresh токен для получения новой пары access/refresh токенов
+4. Сервер сверяет подпись токена, извлекает из него идентификатор пользователя, его роли и определяет имеет ли
+   пользователь права на выполнение данного вызова
+5. Для выполнения выхода из приложения достаточно просто удалить токен на клиенте без необходимости взаимодействия с
+   сервером
+
+
+
+
+## Взаимодействие между сервисами:
+![plot](./microservices.jpg)
+
+
+## Порты сервисов:
+- authorization: http://localhost:9000
+- server: http://localhost:8000
+
+
+
+## Сборка проекта:
+
+mvn clean install -Dactivate=qwerty -Ddeactivate=qwerty
+
+## Rest-запросы:
+1. Регистрация:
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"login": "johny", "password": "123", "firstName": "John", "lastName":"Doe", "email": "john@gmail.com"}' "localhost:9000/register"
+2. Логин:
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"login": "John", "password": "123"}' "localhost:9000/auth"
