@@ -25,7 +25,6 @@
     <modules>
         <module>application</module>
         <module>server</module>
-        <module>home</module>
         <module>authorization</module>
     </modules>
 

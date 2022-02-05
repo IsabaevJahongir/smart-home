@@ -2,7 +2,7 @@
 <Configuration status="warn" name="local" monitorInterval="60">
 
     <Properties>
-        <Property name="logdir">./server/logs</Property>
+        <Property name="logdir">./logs</Property>
     </Properties>
 
     <Loggers>
