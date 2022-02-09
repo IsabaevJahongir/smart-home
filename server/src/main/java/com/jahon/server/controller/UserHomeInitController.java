@@ -2,6 +2,7 @@ package com.jahon.server.controller;
 
 import com.jahon.server.JwtDecoder;
 import com.jahon.server.model.Payload;
+import com.jahon.server.smarthome.item.SmartHome;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -28,12 +29,12 @@ public class UserHomeInitController {
 
 
     @PostMapping("/userhome")
-    public ResponseEntity<String> registerHome(@RequestHeader Map<String, String> headers, @RequestBody String smarthome) {
+    public ResponseEntity<String> registerHome(@RequestHeader Map<String, String> headers, @RequestBody SmartHome smarthome) {
         log.debug("Start init home");
 
         headers.forEach((k, v) -> log.info("'{}' - '{}'", k, v));
 
-        log.info(smarthome);
+        log.info(smarthome.toString());
 
         try {
             String token = headers.get("authorization");

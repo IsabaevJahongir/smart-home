@@ -3,9 +3,13 @@ package com.jahon.server.smarthome.item;
 import java.util.Collection;
 
 public class Room implements Actionable {
-    private final Collection<Light> lights;
-    private final Collection<Door> doors;
-    private final String name;
+    private Collection<Light> lights;
+    private Collection<Door> doors;
+    private String name;
+
+
+    public Room() {
+    }
 
     public Room(Collection<Light> lights, Collection<Door> doors, String name) {
         this.lights = lights;

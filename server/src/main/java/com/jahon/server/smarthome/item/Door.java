@@ -11,8 +11,11 @@ import static com.jahon.server.smarthome.SensorEventType.DOOR_OPEN;
 public class Door implements Actionable {
     private static final Logger log = LoggerFactory.getLogger(Door.class);
 
-    private final String id;
+    private String id;
     private boolean isOpen;
+
+    public Door() {
+    }
 
     public Door(boolean isOpen, String id) {
         this.isOpen = isOpen;

@@ -1,5 +1,6 @@
 package com.jahon.server.smarthome.item;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jahon.server.smarthome.SensorCommandSender;
 import com.jahon.server.smarthome.SensorCommand;
 import org.slf4j.Logger;
@@ -11,8 +12,12 @@ import static com.jahon.server.smarthome.SensorEventType.LIGHT_ON;
 public class Light implements Actionable {
     private static final Logger log = LoggerFactory.getLogger(Light.class);
 
+    @JsonProperty("isOn")
     private boolean isOn;
-    private final String id;
+    private String id;
+
+    public Light() {
+    }
 
     public Light(String id, boolean isOn) {
         this.id = id;

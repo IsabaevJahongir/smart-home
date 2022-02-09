@@ -1,24 +1,20 @@
 package com.jahon.server.smarthome;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jahon.server.smarthome.item.SmartHome;
-import com.jahon.server.smarthome.item.alarm.Alarm;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class SmartHomeProvider {
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static SmartHome getSmartHome() throws IOException {
         // считываем состояние дома из файла
-        Gson gson = new Gson();
-
         String json = new String(Files.readAllBytes(Paths.get(SmartHomeProvider.class.getClassLoader().getResource("smarthome.js").getFile())));
-        //  String json = new String(Files.readAllBytes(Paths.get("server/smarthome.js")));
-        SmartHome smartHome = gson.fromJson(json, SmartHome.class);
 
-        smartHome.setAlarm(new Alarm(smartHome.getAlarm().getId()));
+        SmartHome smartHome = mapper.readValue(json, SmartHome.class);
 
         return smartHome;
     }

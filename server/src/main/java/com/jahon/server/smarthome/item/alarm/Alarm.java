@@ -1,15 +1,20 @@
 package com.jahon.server.smarthome.item.alarm;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jahon.server.smarthome.item.Action;
 import com.jahon.server.smarthome.item.Actionable;
 
 import static com.jahon.server.smarthome.AlarmStateType.DEACTIVATE;
 
+@JsonIgnoreProperties(value = { "password" })
 public class Alarm implements Actionable {
 
-    private final String id;
-    private final transient String password;
-    private transient AlarmState state;
+    private String id;
+    private String password;
+    private AlarmState state;
+
+    public Alarm() {
+    }
 
     public Alarm(String id) {
         this.id = id;

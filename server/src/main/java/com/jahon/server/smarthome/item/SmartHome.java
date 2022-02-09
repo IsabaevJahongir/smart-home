@@ -5,8 +5,11 @@ import com.jahon.server.smarthome.item.alarm.Alarm;
 import java.util.Collection;
 
 public class SmartHome implements Actionable {
-    private final Collection<Room> rooms;
+    private Collection<Room> rooms;
     private Alarm alarm;
+
+    public SmartHome() {
+    }
 
     public SmartHome(Collection<Room> rooms, Alarm alarm) {
         this.rooms = rooms;
