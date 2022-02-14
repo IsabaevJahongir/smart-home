@@ -1,5 +1,6 @@
 package com.jahon.server.smarthome.item;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jahon.server.smarthome.SensorCommandSender;
 import com.jahon.server.smarthome.SensorCommand;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ public class Door implements Actionable {
     private static final Logger log = LoggerFactory.getLogger(Door.class);
 
     private String id;
+    @JsonProperty("open")
     private boolean isOpen;
 
     public Door() {

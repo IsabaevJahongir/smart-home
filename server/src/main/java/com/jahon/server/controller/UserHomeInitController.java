@@ -34,8 +34,6 @@ public class UserHomeInitController {
 
         headers.forEach((k, v) -> log.info("'{}' - '{}'", k, v));
 
-        log.info(smarthome.toString());
-
         try {
             String token = headers.get("authorization");
 

@@ -1,8 +1,6 @@
 package com.jahon.server.smarthome;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.jahon.server.smarthome.item.SmartHome;
 import com.jahon.server.smarthome.item.alarm.Alarm;
 import com.jahon.server.smarthome.item.Door;

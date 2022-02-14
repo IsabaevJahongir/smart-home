@@ -12,7 +12,7 @@ import static com.jahon.server.smarthome.SensorEventType.LIGHT_ON;
 public class Light implements Actionable {
     private static final Logger log = LoggerFactory.getLogger(Light.class);
 
-    @JsonProperty("isOn")
+    @JsonProperty("on")
     private boolean isOn;
     private String id;
 

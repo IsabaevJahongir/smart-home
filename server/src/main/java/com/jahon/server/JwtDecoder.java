@@ -15,7 +15,7 @@ public class JwtDecoder {
     private static final Logger log = LoggerFactory.getLogger(JwtDecoder.class);
 
     @Value("${secretKey}")
-    private static String secretKey;
+    private String secretKey;
 
     public Claims verify(String jwt) {
         Claims claims = Jwts.parser()
@@ -26,5 +26,7 @@ public class JwtDecoder {
         return claims;
     }
 
-
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
 }
